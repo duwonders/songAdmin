@@ -1,11 +1,11 @@
 <template>
   <div class="leftbar">
     <ul v-on:click="loop_bar">
-      <li><a href="##" value="25px" id="dsa"><img src="../../assets/music.png" height="18" width="16">歌曲管理</a></li>
-      <li><a href="##" value="75px"><img src="../../assets/sound.png" height="15" width="16">公告管理</a></li>
-      <li><a href="##" value="125px"><img src="../../assets/mon.png" height="17" width="17">数据分析</a></li>
-      <li><a href="##" value="175px"><img src="../../assets/up.png" height="17" width="17">节目上传</a></li>
-      <li><a href="##" value="225px"><img src="../../assets/set.png" height="14" width="14">违规设置</a></li>
+      <li><a href="#1" value="25px" id="dsa"><img src="../../assets/music.png" height="18" width="16">歌曲管理</a></li>
+      <li><a href="#2" value="75px"><img src="../../assets/sound.png" height="15" width="16">公告管理</a></li>
+      <li><a href="#3" value="125px"><img src="../../assets/mon.png" height="17" width="17">数据分析</a></li>
+      <li><a href="#4" value="175px"><img src="../../assets/up.png" height="17" width="17">节目上传</a></li>
+      <li><a href="#5" value="225px"><img src="../../assets/set.png" height="14" width="14">违规设置</a></li>
     </ul>
     <span style="top: {{ top }}"></span>
 </div>
