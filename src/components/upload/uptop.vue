@@ -1,0 +1,165 @@
+<template>
+	<div class="up-con">
+		<p class='up-title'>
+			<span>整期节目</span>
+			<span>包含歌曲</span>
+		</p>
+		<div class='up-left'>
+			<div class="up-img-con">
+				<input type="file" class="up-img">
+			</div>
+			<label for="t_name">节目名称</label>
+			<input type="text" id="t_name">
+			<label for="t_msg">主播信息</label>
+			<input type="text" id="t_msg">
+			<label for="t_time">播出时间</label>
+			<input type="text" id="t_time">
+			<label for="t_all">整期节目</label>
+			<select name="" id="">
+				<option value ="volvo">俗人熟食</option>
+  			<option value ="saab">寻人启事</option>
+  			<option value="opel">惊天动地</option>
+  			<option value="audi">恋爱循环</option>
+			</select>
+			<p>文件大小 ：25.4MB</p>
+			<button>上传</button>
+		</div>
+		<div class="up-right">
+			<div class="onesong-con">
+				<label for="t_all">整期节目</label>
+				<select name="" id="">
+					<option value ="volvo">俗人熟食</option>
+  				<option value ="saab">寻人启事</option>
+  				<option value="opel">惊天动地</option>
+  				<option value="audi">恋爱循环</option>
+				</select>
+				<p>文件大小 ：25.4MB</p>
+			</div>
+			<div class="onesong-con">
+				<label for="t_all">整期节目</label>
+				<select name="" id="">
+					<option value ="volvo">俗人熟食</option>
+  				<option value ="saab">寻人启事</option>
+  				<option value="opel">惊天动地</option>
+  				<option value="audi">恋爱循环</option>
+				</select>
+				<p>文件大小 ：25.4MB</p>
+			</div>
+			<div class="onesong-con add">
+				<p>+ 添加</p>
+			<div>
+		</div>
+	</div>
+</template>
+
+<script>
+	
+</script>
+
+<style>
+	.up-left{
+		width: 50%;
+		float: left;
+		height: 100%;
+	}
+	.up-con{
+		height: 350px;
+		width: 90%;
+		margin: 35px auto;
+	}
+	.up-title span{
+		font-size: 20px;
+		color: rgb(128, 128, 128);
+		display: inline-block;
+		margin-right: 278px;
+	}
+	.up-left .up-img-con{
+		transition: all 0.6s ease-in-out;
+		margin: 15px 0;
+		width: 80%;
+		background: url('../../assets/up_img.png') no-repeat;
+		background-position: center;
+	}
+	.up-img-con:hover{
+		border-radius: 10px;
+		background-color: rgb(0, 191, 255);
+	}
+	.up-left .up-img{
+		cursor: pointer;
+		display: inline-block;
+		width: 100%;
+		height: 100px;
+		opacity: 0;
+	}
+	.up-con label{
+		color: rgb(128, 128, 128);
+	}
+	.up-left input{
+		padding-left: 5px;
+		width: 170px;
+		height: 20px;
+		margin: 0 90px 0 20px;
+		border: 2px solid rgb(200, 200, 200);
+		border-radius: 5px;
+		margin-bottom: 15px;
+	}
+	.up-con select{
+		margin: 0 90px 0 20px;
+		width: 179px;
+		height: 26px;
+		border: 2px solid rgb(200, 200, 200);
+		border-radius: 5px;
+		background-color: #fff;
+		font-size: 14px; 
+		text-indent: 10px;
+	}
+	.up-con p{
+		margin-top: 10px;
+		font-size: 13px;
+		color: rgb(174, 174, 174);
+	}
+	.up-left button{
+		width: 90px;
+		height: 30px;
+		border-radius: 5px;
+		background-color: rgb(217, 79, 71);
+		cursor: pointer;
+		margin-left: 175px;
+		color: #fff;
+		font-size: 16px;
+	}
+	.up-left button:hover{
+		transition: all 0.6s ease-in-out;
+		background-color: rgb(109, 140, 350);
+	}
+	.up-right{
+		width: 50%;
+		float: right;
+		height: 100%;
+	}
+	.onesong-con{
+		width: 100%;
+		height: 80px;
+		margin: 10px 0;
+		padding: 10px;
+		border: 1px solid rgb(200, 200, 200);
+		border-radius: 5px;
+	}
+	.add{
+		cursor: pointer;
+		background-image: url();
+		background-color: rgb(248, 248, 248);
+		line-height: 
+	}
+	.add p{
+		margin: 0;
+		font-size: 20px;
+		color: rgb(217, 79, 71);
+		text-align: center;
+		line-height: 80px;
+	}
+	.add:hover{
+		transition: all 0.6s ease-in-out;
+		background-color: rgb(0, 191, 255);
+	}
+</style>
