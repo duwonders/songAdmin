@@ -3,6 +3,7 @@
 		<uptop></uptop>
 		<upbottom></upbottom>
 	</div>
+	<!-- </div> -->
 </template>
 <script>
 import uptop from './uptop.vue'

@@ -11,6 +11,30 @@ export default {}
 </script>
 
 <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  a{
+    text-decoration: none;
+  }
+  html{
+    width: 100%;
+    background: rgb(238,238,238);
+  }
+  #container{
+    margin: auto;
+    width: 960px;
+    overflow: hidden;
+  }
+  input, button, select{
+    border-style:none;
+    border:none;
+    outline:none;
+  }
+  li{
+    list-style-type:none;
+  }
   .top{
   	margin: 0 auto;
     width: 100%;

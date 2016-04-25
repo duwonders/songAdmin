@@ -1,72 +1,73 @@
 <template>
-	<div class='man-con'>
-		<form action="">
-			<select name="" id="">
-				<option value="">最近一天</option>
-				<option value="">最近三天</option>
-				<option value="">最近一周</option>
-			</select>
-			<select name="" id="">
-				<option value="">时间</option>
-				<option value="">热门</option>
-			</select>
-			<select name="" id="">
-				<option value="">已经采纳</option>
-				<option value="">未采纳</option>
-			</select>
-		</form>
-		<div class='man-title'>
-			<span>歌手</span>
-			<span>歌名</span>
-			<span>对方姓名</span>
-			<span>内容</span>
-			<span>点歌人</span>
-			<span>时间</span>
-			<span>点赞数</span>
-			<span>操作</span>
+		<div class='man-con'>
+			<form action="">
+				<select name="" id="">
+					<option value="">最近一天</option>
+					<option value="">最近三天</option>
+					<option value="">最近一周</option>
+				</select>
+				<select name="" id="">
+					<option value="">时间</option>
+					<option value="">热门</option>
+				</select>
+				<select name="" id="">
+					<option value="">已经采纳</option>
+					<option value="">未采纳</option>
+				</select>
+			</form>
+			<div class='man-title'>
+				<span>歌手</span>
+				<span>歌名</span>
+				<span>对方姓名</span>
+				<span>内容</span>
+				<span>点歌人</span>
+				<span>时间</span>
+				<span>点赞数</span>
+				<span>操作</span>
+			</div>
+			<div>
+				<span>dsadsa</span>
+				<span>dsadsa</span>
+				<span>dsa</span>
+				<span>内dsadsa容</span>
+				<span>点dsadsa歌人</span>
+				<span>时间</span>
+				<span>点赞ewqewq数</span>
+				<span class="is-pass">采纳</span>
+			</div>
+			<div>
+				<span>dsadsa</span>
+				<span>dsadsa</span>
+				<span>dsa</span>
+				<span>内dsadsa容</span>
+				<span>点dsadsa歌人</span>
+				<span>时间</span>
+				<span>点赞ewqewq数</span>
+				<span class="is-pass">采纳</span>
+			</div>
+			<div>
+				<span>dsadsa</span>
+				<span>dsadsa</span>
+				<span>dsa</span>
+				<span>内dsadsa容</span>
+				<span>点dsadsa歌人</span>
+				<span>时间</span>
+				<span>点赞ewqewq数</span>
+				<span class="is-pass">采纳</span>
+			</div>
+			<div>
+				<span>dsadsa</span>
+				<span>dsadsa</span>
+				<span>dsa</span>
+				<span>内dsadsa容</span>
+				<span>点dsadsa歌人</span>
+				<span>时间</span>
+				<span>点赞ewqewq数</span>
+				<span class="is-pass">采纳</span>
+			</div>
 		</div>
-		<div>
-			<span>dsadsa</span>
-			<span>dsadsa</span>
-			<span>dsa</span>
-			<span>内dsadsa容</span>
-			<span>点dsadsa歌人</span>
-			<span>时间</span>
-			<span>点赞ewqewq数</span>
-			<span class="is-pass">采纳</span>
-		</div>
-		<div>
-			<span>dsadsa</span>
-			<span>dsadsa</span>
-			<span>dsa</span>
-			<span>内dsadsa容</span>
-			<span>点dsadsa歌人</span>
-			<span>时间</span>
-			<span>点赞ewqewq数</span>
-			<span class="is-pass">采纳</span>
-		</div>
-		<div>
-			<span>dsadsa</span>
-			<span>dsadsa</span>
-			<span>dsa</span>
-			<span>内dsadsa容</span>
-			<span>点dsadsa歌人</span>
-			<span>时间</span>
-			<span>点赞ewqewq数</span>
-			<span class="is-pass">采纳</span>
-		</div>
-		<div>
-			<span>dsadsa</span>
-			<span>dsadsa</span>
-			<span>dsa</span>
-			<span>内dsadsa容</span>
-			<span>点dsadsa歌人</span>
-			<span>时间</span>
-			<span>点赞ewqewq数</span>
-			<span class="is-pass">采纳</span>
-		</div>
-	</div>
 </template>
+
 <style>
 	.man-con{
 		float: right;
