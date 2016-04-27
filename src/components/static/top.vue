@@ -27,7 +27,7 @@ export default {}
     width: 960px;
     overflow: hidden;
   }
-  input, button, select{
+  input, button, select, textarea{
     border-style:none;
     border:none;
     outline:none;

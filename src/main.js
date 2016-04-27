@@ -7,7 +7,11 @@ import VueRouter from 'vue-router'
 //引入组件文件
 import upload from './components/upload/index.vue'
 import manage from './components/manage/index.vue'
+import rule from './components/rule/index.vue'
+import data from './components/data/index.vue'
+import notice from './components/notice/index.vue'
 import indexf from './App.vue'
+
 
 Vue.use(VueRouter);
 //开启debug模式
@@ -32,6 +36,15 @@ router.map({//定义路由映射
             '/upload': {
                 component: upload
             },
+            '/rule' : {
+                component: rule
+            },
+            '/data' : {
+                component: data
+            },
+            '/notice' : {
+                component: notice
+            }
         }
     },
 });
