@@ -6,20 +6,18 @@
 		</p>
 		<div class='up-left'>
 			<div class="up-img-con">
-				<input type="file" class="up-img">
+				<input type="file" class="up-img" v-on:change="showpic">
 			</div>
 			<label for="t_name">节目名称</label>
 			<input type="text" id="t_name">
 			<label for="t_msg">主播信息</label>
 			<input type="text" id="t_msg">
 			<label for="t_time">播出时间</label>
-			<input type="text" id="t_time">
-			<label for="t_all">整期节目</label>
 			<select name="" id="">
-				<option value ="volvo">俗人熟食</option>
-  			<option value ="saab">寻人启事</option>
-  			<option value="opel">惊天动地</option>
-  			<option value="audi">恋爱循环</option>
+				<option value ="volvo">....</option>
+  			<option value ="saab">....</option>
+  			<option value="opel">....</option>
+  			<option value="audi">....</option>
 			</select>
 			<p>文件大小 ：25.4MB</p>
 			<button>上传</button>
@@ -45,7 +43,7 @@
 				</select>
 				<p>文件大小 ：25.4MB</p>
 			</div>
-			<div class="onesong-con add">
+			<div class="onesong-con add" v-on:click="addMis">
 				<p>+ 添加</p>
 			<div>
 		</div>
@@ -53,7 +51,40 @@
 </template>
 
 <script>
-	
+	export default{
+		methods: {
+			showpic : function(e){
+				let f = e.target.files[0];
+				let reader = new FileReader();
+				if(/image/.test(f.type)){
+					reader.readAsDataURL(f);
+				}else{
+					alert('文件格式错误');
+				}
+				reader.onload = function(){
+					let con = document.querySelector('.up-img-con');
+					con.style.background = "url(" + reader.result + ")";
+					con.style["background-size"] = "100% 100%";
+				}
+			},
+			addMis : function(e){
+				let add = document.querySelector('.add');
+				let con = document.querySelector('.up-right');
+				let eletree = "<label for='t_all'>整期节目</label>" +
+											"<select name='' id=''>" + 
+											"<option value='volvo'>俗人熟食</option>" +
+  										"<option value ='saab'>寻人启事</option>" +
+  										"<option value='opel'>惊天动地</option>" +
+  										"<option value='audi'>恋爱循环</option>" +
+											"</select>" + 
+											"<p>文件大小 ：25.4MB</p>";
+				let div = document.createElement('div');
+				div.className = "onesong-con";
+				div.innerHTML = eletree;
+				con.insertBefore(div, add);
+			} 
+		}
+	}
 </script>
 
 <style>
@@ -136,10 +167,11 @@
 		width: 50%;
 		float: right;
 		height: 100%;
+		overflow: scroll;
 	}
 	.onesong-con{
-		width: 100%;
-		height: 80px;
+		width: 89%;
+		height: 75px;
 		margin: 10px 0;
 		padding: 10px;
 		border: 1px solid rgb(200, 200, 200);
