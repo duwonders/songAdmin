@@ -119,7 +119,7 @@
 		cursor: pointer;
 		display: inline-block;
 		width: 100%;
-		height: 100px;
+		height: 140px;
 		opacity: 0;
 	}
 	.up-con label{
