@@ -1,5 +1,5 @@
 <template>
-	<div class="bottom-con">
+	<div class="bottom-con" v-on:click="showMus">
 		<p>往期节目</p>
 		<div class="bar-title">
 			<span>节目名称</span>
@@ -82,10 +82,44 @@
 		</div>
 	</div>
 </template>
+<script>
+	export default{
+		methods : {
+			showMus : function(e){
+				let target = e.target.parentNode.parentNode;
+				if(target.className === 'bar-info'){
+					if(e.target.className === 'sanjiao'){		//进行往期节目的渲染
+						e.target.className = 'fansanjiao';
+						let div = document.createElement('div');
+						div.className = "bar-info";
+						div.mus = true;
+						div.innerHTML = 
+						"<span>歌曲名称: 相依为命</span>" +
+						"<span>演唱者: 陈小春</span>" +
+						"<span>文件大小: 25MB</span>"
+					  target.parentNode.insertBefore(div, target.nextSibling);
+					}else{
+						e.target.className = 'sanjiao';
+						fordel(target);
+					}
+				}
+				function fordel(node){
+					if(node.nextSibling.mus && node.nextSibling){
+						fordel(node.nextSibling);
+						node.parentNode.removeChild(node.nextSibling);
+					}else{
+						return;
+					}
+				}
+			}
+		}
+	}
+</script>
 <style>
 	.bottom-con{
 		width: 100%;
 		height: 50%;
+		overflow: scroll;
 	}
 	.bottom-con p{
 		margin-left: 40px;
@@ -121,6 +155,15 @@
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 10px solid rgb(217, 79, 71);
+    display: inline-block;
+	}
+	.bar-info .fansanjiao{
+		cursor: pointer;
+		width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid rgb(217, 79, 71);
     display: inline-block;
 	}
 </style>
