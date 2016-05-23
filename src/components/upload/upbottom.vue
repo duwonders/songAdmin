@@ -84,6 +84,9 @@
 </template>
 <script>
 	export default{
+		data () {
+			
+		},
 		methods : {
 			showMus : function(e){
 				let target = e.target.parentNode.parentNode;

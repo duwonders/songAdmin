@@ -23,35 +23,26 @@
 			<button>上传</button>
 		</div>
 		<div class="up-right">
-			<div class="onesong-con">
-				<label for="t_all">整期节目</label>
-				<select name="" id="">
-					<option value ="volvo">俗人熟食</option>
-  				<option value ="saab">寻人启事</option>
-  				<option value="opel">惊天动地</option>
-  				<option value="audi">恋爱循环</option>
-				</select>
-				<p>文件大小 ：25.4MB</p>
-			</div>
-			<div class="onesong-con">
-				<label for="t_all">整期节目</label>
-				<select name="" id="">
-					<option value ="volvo">俗人熟食</option>
-  				<option value ="saab">寻人启事</option>
-  				<option value="opel">惊天动地</option>
-  				<option value="audi">恋爱循环</option>
-				</select>
-				<p>文件大小 ：25.4MB</p>
-			</div>
+			<upMusic v-for="i in nums"></upMusic>
 			<div class="onesong-con add" v-on:click="addMis">
 				<p>+ 添加</p>
-			<div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import upmusic from "./upMusic";
+
 	export default{
+		data(){
+			return {
+				i: 0,
+				nums: {
+					0: "num0",
+				}
+			}
+		},
 		methods: {
 			showpic : function(e){
 				let f = e.target.files[0];
@@ -67,27 +58,58 @@
 					con.style["background-size"] = "100% 100%";
 				}
 			},
-			addMis : function(e){
-				let add = document.querySelector('.add');
-				let con = document.querySelector('.up-right');
-				let eletree = "<label for='t_all'>整期节目</label>" +
-											"<select name='' id=''>" + 
-											"<option value='volvo'>俗人熟食</option>" +
-  										"<option value ='saab'>寻人启事</option>" +
-  										"<option value='opel'>惊天动地</option>" +
-  										"<option value='audi'>恋爱循环</option>" +
-											"</select>" + 
-											"<p>文件大小 ：25.4MB</p>";
-				let div = document.createElement('div');
-				div.className = "onesong-con";
-				div.innerHTML = eletree;
-				con.insertBefore(div, add);
-			} 
+			// addMis : function(e){
+			// 	let add = document.querySelector('.add');
+			// 	let con = document.querySelector('.up-right');
+			// 	let eletree = "<label for='music-file'>选择歌曲</label>" +
+			// 	"<div>" + 
+			// 		"<div id='music-file-con'>...</div>" +
+			// 		"<input id='music-file' type='file'>" +
+			// 	"</div>" +
+			// 	"<p>文件大小 ：25.4MB</p>" +
+			// 	"<label for='t_all'>近期播放</label>" +
+			// 	"<select name='' id=''>" +
+			// 		"<option value ='volvo'>俗人熟食</option>" + 
+  	// 			"<option value ='saab'>寻人启事</option>" +
+  	// 			"<option value='opel'>惊天动地</option>" +
+  	// 			"<option value='audi'>恋爱循环</option>" +
+			// 	"</select>"
+			// 	let div = document.createElement('div');
+			// 	div.className = "onesong-con";
+			// 	div.innerHTML = eletree;
+			// 	con.insertBefore(div, add);
+			// } 
+		},
+		components: {
+			upmusic
 		}
 	}
 </script>
 
 <style>
+	#music-file-con{
+		display: inline-block; 
+		width:20px; 
+		height: 17px; 
+		border-radius:0; 
+		border: none; 
+		border-left: 2px solid #ccc; 
+		float: right; 
+		text-align:center; 
+		color: #ccc;
+	}
+	.onesong-con input{
+		opacity: 0;
+		width: 20px;
+		float: right;
+	}
+	.onesong-con div{
+		margin-left: 20px;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		width: 190px;
+		display: inline-block;
+	}
 	.up-left{
 		width: 50%;
 		float: left;
@@ -135,7 +157,7 @@
 		margin-bottom: 15px;
 	}
 	.up-con select{
-		margin: 0 90px 0 20px;
+		margin: 0 9px 0 20px;
 		width: 179px;
 		height: 26px;
 		border: 2px solid rgb(200, 200, 200);
@@ -146,6 +168,7 @@
 	}
 	.up-con p{
 		margin-top: 10px;
+		margin-bottom: 10px;
 		font-size: 13px;
 		color: rgb(174, 174, 174);
 	}
