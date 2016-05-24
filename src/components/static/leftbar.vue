@@ -7,7 +7,7 @@
       <li><a v-link="{ path: '/index/upload' }" href="#4" value="175px"><img src="../../assets/up.png" height="17" width="17">节目上传</a></li>
       <li><a v-link="{ path: '/index/rule' }" href="#5" value="225px" ><img src="../../assets/set.png" height="14" width="14">违规设置</a></li>
     </ul>
-    <span style="top: {{ top }}"></span>
+    <span :style="{ top: top }"></span>
 </div>
 </template>
 <script>
