@@ -39,10 +39,11 @@
 			return {
 				nums: [
 					{ disable: [] },
-				]
+				],
+				files: []
 			}
 		},
-		methods: {
+		methods : {
 			showpic : function(e){
 				let f = e.target.files[0];
 				let reader = new FileReader();
@@ -59,12 +60,18 @@
 			},
 			addMis : function(){
 				this.nums.push({disable: []});
-				console.log(this.nums);
 			},
-			upload: function(){
-				
+			upload : function(){
+				console.log(this.files);
 			}
 		},
+
+		events : {
+			'pushFile' : function(file){
+				this.files.push(file);		//将添加的文件放入总文件数组里
+			}
+		},
+
 		components: {
 			upmusic
 		}
