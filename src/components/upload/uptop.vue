@@ -81,14 +81,19 @@
 				let XHR = new XMLHttpRequest();
 				XHR.open('post', `gole.php?name=${name}&msg=${zhubo}&time=${time}`, true);
 				XHR.send(data);
-				//步骤二
-				this.musics.map( (index, file) => {
-					let XHR = new XMLHttpRequest();
-					let data = new FormData();
-					data.append('song' + index, file);
-					XHR.open('post', "lalala.php?num="+ index , true);
-					XHR.send(data);
-				});
+				XHR.onload = function(){
+					//步骤二
+					this.musics.map( (index, file) => {
+						let MXHR = new XMLHttpRequest();
+						let data = new FormData();
+						data.append('song' + index, file);
+						MXHR.open('post', "lalala.php?num="+ index , true);
+						MXHR.send(data);
+						MXHR.onload = function(){
+							console.log(index + ' ok');
+						}
+					});
+				}
 			}
 		},
 
