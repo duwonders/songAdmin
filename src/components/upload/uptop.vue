@@ -20,7 +20,7 @@
   			<option value="audi">....</option>
 			</select>
 			<p>文件大小 ：25.4MB</p>
-			<button>上传</button>
+			<button v-on:click="upload">上传</button>
 		</div>
 		<div class="up-right">
 			<upMusic v-for="i in nums"></upMusic>
@@ -60,7 +60,10 @@
 			addMis : function(){
 				this.nums.push({disable: []});
 				console.log(this.nums);
-			} 
+			},
+			upload: function(){
+				
+			}
 		},
 		components: {
 			upmusic
