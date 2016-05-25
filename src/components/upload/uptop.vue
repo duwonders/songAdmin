@@ -13,11 +13,11 @@
 			<label for="t_msg">主播信息</label>
 			<input type="text" id="t_msg">
 			<label for="t_time">播出时间</label>
-			<select name="" id="">
-				<option value ="volvo">....</option>
-  			<option value ="saab">....</option>
-  			<option value="opel">....</option>
-  			<option value="audi">....</option>
+			<select name="" id="t_time">
+				<option value ="time1">....</option>
+  			<option value ="time2">....</option>
+  			<option value="time3">....</option>
+  			<option value="time4">....</option>
 			</select>
 			<p>文件大小 ：25.4MB</p>
 			<button v-on:click="upload">上传</button>
@@ -40,7 +40,8 @@
 				nums: [
 					{ disable: [] },
 				],
-				files: []
+				musics: [],	//存放mp3文件的数组	
+				pic: undefined
 			}
 		},
 		methods : {
@@ -49,6 +50,7 @@
 				let reader = new FileReader();
 				if(/image/.test(f.type)){
 					reader.readAsDataURL(f);
+					this.pic = f;
 				}else{
 					alert('文件格式错误');
 				}
@@ -61,14 +63,38 @@
 			addMis : function(){
 				this.nums.push({disable: []});
 			},
+			/**
+			 * 步骤一：将整期节目的信息与封面传给服务器
+			 * 步骤二：将歌曲模拟多线程传给服务器
+			 */
 			upload : function(){
-				console.log(this.files);
+				//步骤一
+				if(!this.pic){
+					alert('背景不能为');
+					return;
+				}
+				let file = new FormData();
+				file.append('pic', this.pic);
+				let name = document.querySelector('#t_name').value;
+				let zhubo = document.querySelector('#t_msg').value;
+				let time = document.querySelector('#t_time').value;
+				let XHR = new XMLHttpRequest();
+				XHR.open('post', `gole.php?name=${name}&msg=${zhubo}&time=${time}`, true);
+				XHR.send(data);
+				//步骤二
+				this.musics.map( (index, file) => {
+					let XHR = new XMLHttpRequest();
+					let data = new FormData();
+					data.append('song' + index, file);
+					XHR.open('post', "lalala.php?num="+ index , true);
+					XHR.send(data);
+				});
 			}
 		},
 
 		events : {
 			'pushFile' : function(file){
-				this.files.push(file);		//将添加的文件放入总文件数组里
+				this.musics.push(file);		//将添加的文件放入总文件数组里
 			}
 		},
 
