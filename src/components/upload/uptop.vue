@@ -19,7 +19,7 @@
   			<option value="time3">....</option>
   			<option value="time4">....</option>
 			</select>
-			<p>文件大小 ：25.4MB</p>
+			<p>文件大小 ：<span id="size">{{ size }}</span>MB</p>
 			<button v-on:click="upload">上传</button>
 		</div>
 		<div class="up-right">
@@ -42,6 +42,24 @@
 				],
 				musics: [],	//存放mp3文件的数组	
 				pic: undefined
+			}
+		},
+		computed: {
+			size: function(){
+				let allSize = 0;
+				const per = 1024 * 1024;
+				if(this.musics.length > 1){
+					let realArr = [];
+					this.musics.map(function(it, inx){
+						realArr.push((it.size / per).toFixed(2));
+					});
+				  allSize = realArr.reduce((pre, next) => {
+						return parseFloat(pre) + parseFloat(next);
+					})
+				}else if(this.musics.length == 1){
+					allSize = (this.musics[0].size / per).toFixed(2);
+				}
+				return allSize;
 			}
 		},
 		methods : {
@@ -78,8 +96,9 @@
 				let name = document.querySelector('#t_name').value;
 				let zhubo = document.querySelector('#t_msg').value;
 				let time = document.querySelector('#t_time').value;
+				let size = document.querySelector('#size').innerHTML;
 				let XHR = new XMLHttpRequest();
-				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}`, true);
+				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}`, true);
 				XHR.send(file);
 				XHR.onload = () => {
 					//步骤二

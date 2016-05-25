@@ -1,7 +1,7 @@
 <template>
 	<div class="onesong-con">
 		<label for="music-file">选择歌曲</label>
-		<div>
+		<div style="position:relative">
 			<span style="position:absolute; margin-left: 4px; color: #900212; overflow: hidden; font-size:10px; margin-top:4px; width: 150px; height: 15px;overflow:hidden; line-height: 15px"></span>
 			<div id="music-file-con">...</div>
 			<input id="music-file" type="file" v-on:change="getFile">
