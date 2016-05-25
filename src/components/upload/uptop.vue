@@ -69,8 +69,8 @@
 			 */
 			upload : function(){
 				//步骤一
-				if(!this.pic){
-					alert('背景不能为');
+				if(!this.pic || this.musics.length == 0){
+					alert('文件不能为');
 					return;
 				}
 				let file = new FormData();
@@ -79,15 +79,15 @@
 				let zhubo = document.querySelector('#t_msg').value;
 				let time = document.querySelector('#t_time').value;
 				let XHR = new XMLHttpRequest();
-				XHR.open('post', `gole.php?name=${name}&msg=${zhubo}&time=${time}`, true);
-				XHR.send(data);
-				XHR.onload = function(){
+				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}`, true);
+				XHR.send(file);
+				XHR.onload = () => {
 					//步骤二
-					this.musics.map( (index, file) => {
+					this.musics.map( (file, index) => {
 						let MXHR = new XMLHttpRequest();
 						let data = new FormData();
 						data.append('song' + index, file);
-						MXHR.open('post', "lalala.php?num="+ index , true);
+						MXHR.open('post', "../../../../../www/test/music.php?num="+ index , true);
 						MXHR.send(data);
 						MXHR.onload = function(){
 							console.log(index + ' ok');
