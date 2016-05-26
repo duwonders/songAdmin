@@ -174,6 +174,7 @@
 		width: 80%;
 		background: url('../../assets/up_img.png') no-repeat;
 		background-position: center;
+		border-radius: 10px;
 	}
 	.up-img-con:hover{
 		border-radius: 10px;
