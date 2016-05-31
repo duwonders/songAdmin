@@ -97,19 +97,21 @@
 				let zhubo = document.querySelector('#t_msg').value;
 				let time = document.querySelector('#t_time').value;
 				let size = document.querySelector('#size').innerHTML;
+				let num = this.musics.length;
 				let XHR = new XMLHttpRequest();
-				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}`, true);
+				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}&num=${num}`, true);
 				XHR.send(file);
 				XHR.onload = () => {
 					//步骤二
 					this.musics.map( (file, index) => {
 						let MXHR = new XMLHttpRequest();
 						let data = new FormData();
+						let fileNum = index + 1;
 						data.append('song' + index, file);
-						MXHR.open('post', "../../../../../www/test/music.php?num="+ index , true);
+						MXHR.open('post', "../../../../../www/test/music.php?num="+ fileNum + "&name=" + name, true);
 						MXHR.send(data);
 						MXHR.onload = function(){
-							console.log(index + ' ok');
+							console.log(fileNum + ' ok');
 						}
 					});
 				}
@@ -200,7 +202,7 @@
 		margin-bottom: 15px;
 	}
 	.up-con select{
-		margin: 0 9px 0 20px;
+		margin: -20px 9px 0 20px;
 		width: 179px;
 		height: 26px;
 		border: 2px solid rgb(200, 200, 200);
