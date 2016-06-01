@@ -1,33 +1,43 @@
 <template>
 	<div class="onesong-con">
-		<label for="music-file">选择歌曲</label>
-		<div style="position:relative">
-			<span style="position:absolute; margin-left: 4px; color: #900212; overflow: hidden; font-size:10px; margin-top:4px; width: 150px; height: 15px;overflow:hidden; line-height: 15px"></span>
-			<div id="music-file-con">...</div>
-			<input id="music-file" type="file" v-on:change="getFile">
-		</div>
-		<p>文件大小 ：0MB</p>
-		<label for="t_all">近期播放</label>
-		<select name="" id="">
-			<option value ="volvo">俗人熟食</option>
-			<option value ="saab">寻人启事</option>
-			<option value="opel">惊天动地</option>
-			<option value="audi">恋爱循环</option>
+		<label for="t_all">选择歌曲</label>
+		<select v-on:change="getName">
+			<option value="俗人熟食" size="10.00">俗人熟食</option>
+			<option value="寻人启事" size="10.50">寻人启事</option>
+			<option value="惊天动地" size="11.00">惊天动地</option>
+			<option value="恋爱循环" size="15.01">恋爱循环</option>
 		</select>
+		<p>文件大小 ：{{ size }}MB</p>
 	</div>
 </template>
 <script>
 	export default {
+		data () {
+			return {
+				size: 0,
+			}
+		},
 		methods: {
-			getFile: function(e){
-				let f = e.target.files[0];
-				if(!/mp3/.test(f.type)){
-					alert("文件格式错误");
-					return;
+			getName: function(e){
+				let target = e.target;
+				let name = target.value;
+				let size;
+				Array.from(target.children).map(function(op){
+					if(op.value === name)
+						size = parseFloat(op.getAttribute('size'));
+				});
+				this.size = size;
+				if(!target.isCh){
+					this.$dispatch('pushFile', {
+						name: name, 
+						size: size
+					});
+					target.isCh = true;
 				}else{
-					e.target.parentNode.children[0].innerHTML = f.name;
-					e.target.parentNode.nextElementSibling.innerHTML = "文件大小 ： " + (f.size / 1024 / 1024).toFixed(2) + 'MB';
-					this.$dispatch('pushFile', f);
+					this.$dispatch('pushFile', {
+						name: name, 
+						size: size
+					}, true);
 				}
 			}
 		}

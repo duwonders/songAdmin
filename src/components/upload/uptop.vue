@@ -13,13 +13,14 @@
 			<label for="t_msg">主播信息</label>
 			<input type="text" id="t_msg">
 			<label for="t_time">播出时间</label>
-			<select name="" id="t_time">
+			<!-- <select name="" id="t_time">
 				<option value ="time1">....</option>
   			<option value ="time2">....</option>
   			<option value="time3">....</option>
   			<option value="time4">....</option>
-			</select>
-			<p>文件大小 ：<span id="size">{{ size }}</span>MB</p>
+			</select> -->
+			<input type="date">
+			<p>文件大小 ：<span id="size">{{ sizeAll }}</span>MB</p>
 			<button v-on:click="upload">上传</button>
 		</div>
 		<div class="up-right">
@@ -41,25 +42,8 @@
 					{ disable: [] },
 				],
 				musics: [],	//存放mp3文件的数组	
+				sizeAll: 0,
 				pic: undefined
-			}
-		},
-		computed: {
-			size: function(){
-				let allSize = 0;
-				const per = 1024 * 1024;
-				if(this.musics.length > 1){
-					let realArr = [];
-					this.musics.map(function(it, inx){
-						realArr.push((it.size / per).toFixed(2));
-					});
-				  allSize = realArr.reduce((pre, next) => {
-						return parseFloat(pre) + parseFloat(next);
-					})
-				}else if(this.musics.length == 1){
-					allSize = (this.musics[0].size / per).toFixed(2);
-				}
-				return allSize;
 			}
 		},
 		methods : {
@@ -101,26 +85,21 @@
 				let XHR = new XMLHttpRequest();
 				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}&num=${num}`, true);
 				XHR.send(file);
-				XHR.onload = () => {
-					//步骤二
-					this.musics.map( (file, index) => {
-						let MXHR = new XMLHttpRequest();
-						let data = new FormData();
-						let fileNum = index + 1;
-						data.append('song' + index, file);
-						MXHR.open('post', "../../../../../www/test/music.php?num="+ fileNum + "&name=" + name, true);
-						MXHR.send(data);
-						MXHR.onload = function(){
-							console.log(fileNum + ' ok');
-						}
-					});
+				XHR.onload = (data) => {
+					console.log(data.response);
 				}
 			}
 		},
 
 		events : {
-			'pushFile' : function(file){
-				this.musics.push(file);		//将添加的文件放入总文件数组里
+			'pushFile' : function(music, isChange = false){
+				if(isChange){
+					let preSize = this.musics[this.musics.length - 1].size;
+					this.sizeAll -= preSize;
+					this.musics.pop();
+				}
+				this.musics.push(music);
+				this.sizeAll += music.size;
 			}
 		},
 
