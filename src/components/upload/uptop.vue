@@ -13,13 +13,7 @@
 			<label for="t_msg">主播信息</label>
 			<input type="text" id="t_msg">
 			<label for="t_time">播出时间</label>
-			<!-- <select name="" id="t_time">
-				<option value ="time1">....</option>
-  			<option value ="time2">....</option>
-  			<option value="time3">....</option>
-  			<option value="time4">....</option>
-			</select> -->
-			<input type="date">
+			<input type="date" id="t_time">
 			<p>文件大小 ：<span id="size">{{ sizeAll }}</span>MB</p>
 			<button v-on:click="upload">上传</button>
 		</div>
@@ -65,10 +59,6 @@
 			addMis : function(){
 				this.nums.push({disable: []});
 			},
-			/**
-			 * 步骤一：将整期节目的信息与封面传给服务器
-			 * 步骤二：将歌曲模拟多线程传给服务器
-			 */
 			upload : function(){
 				//步骤一
 				if(!this.pic || this.musics.length == 0){

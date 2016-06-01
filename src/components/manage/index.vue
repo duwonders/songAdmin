@@ -25,48 +25,29 @@
 				<span>点赞数</span>
 				<span>操作</span>
 			</div>
-			<div>
-				<span>dsadsa</span>
-				<span>dsadsa</span>
-				<span>dsa</span>
-				<span>内dsadsa容</span>
-				<span>点dsadsa歌人</span>
-				<span>时间</span>
-				<span>点赞ewqewq数</span>
-				<span class="is-pass">采纳</span>
-			</div>
-			<div>
-				<span>dsadsa</span>
-				<span>dsadsa</span>
-				<span>dsa</span>
-				<span>内dsadsa容</span>
-				<span>点dsadsa歌人</span>
-				<span>时间</span>
-				<span>点赞ewqewq数</span>
-				<span class="is-pass">采纳</span>
-			</div>
-			<div>
-				<span>dsadsa</span>
-				<span>dsadsa</span>
-				<span>dsa</span>
-				<span>内dsadsa容</span>
-				<span>点dsadsa歌人</span>
-				<span>时间</span>
-				<span>点赞ewqewq数</span>
-				<span class="is-pass">采纳</span>
-			</div>
-			<div>
-				<span>dsadsa</span>
-				<span>dsadsa</span>
-				<span>dsa</span>
-				<span>内dsadsa容</span>
-				<span>点dsadsa歌人</span>
-				<span>时间</span>
-				<span>点赞ewqewq数</span>
-				<span class="is-pass">采纳</span>
-			</div>
+			<input type="file" style="display:none" v-on:click="upMusic" id="up">
+			<mumes></mumes>	
 		</div>
 </template>
+
+<script>
+	import mumes from './mumes.vue';
+	export default{
+		components: {
+			mumes
+		},
+		methods: {
+			upMusic: function(){
+				
+			}
+		},
+		events: {
+			clickUp: function(){
+				document.querySelector('#up').click();
+			}
+		}
+	}
+</script>
 
 <style>
 	.man-con{
