@@ -17,6 +17,7 @@
 				size: 0,
 			}
 		},
+		
 		methods: {
 			getName: function(e){
 				let target = e.target;
