@@ -72,8 +72,9 @@
 				let time = document.querySelector('#t_time').value;
 				let size = document.querySelector('#size').innerHTML;
 				let num = this.musics.length;
+				let musics = JSON.stringify(this.musics);
 				let XHR = new XMLHttpRequest();
-				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}&num=${num}`, true);
+				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}&num=${num}&musics=${musics}`, true);
 				XHR.send(file);
 				XHR.onload = (data) => {
 					console.log(data.response);
