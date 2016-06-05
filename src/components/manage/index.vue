@@ -25,7 +25,7 @@
 				<span>点赞数</span>
 				<span>操作</span>
 			</div>
-			<input type="file" style="display:none" v-on:click="upMusic" id="up">
+			<input type="file" style="display:none" id="up">
 			<mumes></mumes>	
 		</div>
 </template>
@@ -36,14 +36,26 @@
 		components: {
 			mumes
 		},
-		methods: {
-			upMusic: function(){
-				
-			}
-		},
 		events: {
-			clickUp: function(){
-				document.querySelector('#up').click();
+			clickUp: function(data){
+				let upBut = document.querySelector('#up');
+				upBut.click();
+				upBut.addEventListener('change', upMusic);
+				function upMusic(e){
+					upBut.removeEventListener('change', upMusic);
+					let file = e.target.files[0];
+					if(!/audio\/mp3/.test(file.type)){
+						alert('文件格式错误，请传对应的MP3文件')
+						return;
+					}
+					let formdata = new FormData();
+					formdata.append('mis', file);
+					let xhr = new XMLHttpRequest();
+					let songMessage = {};
+					Object.assign(songMessage, data);
+					xhr.open('POST', `lalala.php?message=${JSON.stringify(songMessage)}`);
+					xhr.send(formdata);
+				}
 			}
 		}
 	}

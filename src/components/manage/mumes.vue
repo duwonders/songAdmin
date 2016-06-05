@@ -1,5 +1,5 @@
 <template>
-	<div v-for="it of songMsg">
+	<div v-for="(index, it) of songMsg">
 		<span>{{ it.singer }}</span>
 		<span>{{ it.songName }}</span>
 		<span>{{ it.toWho }}</span>
@@ -7,7 +7,7 @@
 		<span>{{ it.pointPerson }}</span>
 		<span>{{ it.time }}</span>
 		<span>{{ it.vote }}</span>
-		<span class="is-pass" v-on:click="clickUp">采纳</span>
+		<span class="is-pass" songId="{{ index }}" v-on:click="clickUp">采纳</span>
 	</div>
 </template>
 <script>
@@ -28,8 +28,10 @@
 			}
 		},
 		methods: {
-			clickUp: function(){
-				this.$dispatch('clickUp');
+			clickUp: function(e){
+				let id = e.target.getAttribute('songId');
+				let data = this.songMsg[id];
+				this.$dispatch('clickUp', data);
 			}
 		}
 	}
