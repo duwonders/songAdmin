@@ -1,12 +1,12 @@
 <template>
 	<div v-for="(index, it) of songMsg">
-		<span>{{ it.singer }}</span>
-		<span>{{ it.songName }}</span>
-		<span>{{ it.toWho }}</span>
-		<span>{{ it.contest }}</span>
-		<span>{{ it.pointPerson }}</span>
-		<span>{{ it.time }}</span>
-		<span>{{ it.vote }}</span>
+		<span>{{ it.song_singer }}</span>
+		<span>{{ it.song_name }}</span>
+		<span>{{ it.receiver }}</span>
+		<span>{{ it.message }}</span>
+		<span>{{ it.name }}</span>
+		<span>{{ it.created_at }}</span>
+		<span>{{ it.likes }}</span>
 		<span class="is-pass" songId="{{ index }}" v-on:click="clickUp">采纳</span>
 	</div>
 </template>
@@ -14,17 +14,28 @@
 	export default{
 		data () { 
 			return {
-				songMsg: [
-					{
-						singer: "陈小春",
-						songName: "独家记忆",
-						toWho: '陈馨怡',
-						contest: 'good night myAngle',
-						pointPerson: 'duwonders',
-						time: '1995.1.1',
-						vote: '10000'
-					},
-				],
+				songMsgPromise: (async () => {
+					let promise = new Promise((resolve, reject) => {
+						let xhr = new XMLHttpRequest();
+						xhr.open('GET', 'http://localhost:8000/song/list');
+						xhr.send();
+						xhr.onload = function(){
+							if(xhr.readyState == 4 && xhr.status == 200){
+								resolve(xhr.responseText);
+							}else{
+								alert("出现异常");
+							}
+						}
+					});
+					let tempP = await promise.then(data => {
+						let data1 = JSON.parse(data)['list'];
+						return data1;
+					});
+					this.songMsg = tempP;
+					return;
+				})(),
+
+				songMsg: []
 			}
 		},
 		methods: {

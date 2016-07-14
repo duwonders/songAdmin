@@ -53,7 +53,7 @@
 					let xhr = new XMLHttpRequest();
 					let songMessage = {};
 					Object.assign(songMessage, data);
-					xhr.open('POST', `lalala.php?message=${JSON.stringify(songMessage)}`);
+					xhr.open('POST', `lalala.php?id=${songMessage.id}`);
 					xhr.send(formdata);
 				}
 			}
