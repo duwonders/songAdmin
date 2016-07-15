@@ -8,82 +8,40 @@
 			<span>文件大小</span>
 			<span>所含歌曲</span>
 		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
-		<div class="bar-info">
-			<span>节目名称</span>
-			<span>主播信息</span>
-			<span>2015-07-05</span>
-			<span>28.5MB</span>
-			<span>
-				<span class="sanjiao"></span>
-			</span>
-		</div>
+		<dish v-for="dishes in dishes" :data="{{ dishes }}"></dish>
 	</div>
 </template>
 <script>
+	import dish from './dish.vue';
 	export default{
+		data () {
+			return {
+				dishPromise: (async () => {
+					let promise = new Promise((resolve, reject) => {
+						let xhr = new XMLHttpRequest();
+						xhr.open('GET', 'http://localhost:8000/program/list');
+						xhr.send();
+						xhr.onload = function(){
+							if(xhr.readyState == 4 && xhr.status == 200){
+								resolve(xhr.responseText);
+							}else{
+								alert("出现异常");
+							}
+						}
+					});
+					let tempP = await promise.then(data => {
+						let data1 = JSON.parse(data)['list'];
+						return data1;
+					});
+					this.dishes = tempP;
+					return;
+				})(),
+
+				dishes: []
+			}
+		},
+
+
 		methods : {
 			showMus : function(e){
 				let target = e.target.parentNode.parentNode;
@@ -112,6 +70,9 @@
 					}
 				}
 			}
+		},
+		components: {
+			dish,
 		}
 	}
 </script>
