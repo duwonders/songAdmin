@@ -8,14 +8,21 @@
 			<span>文件大小</span>
 			<span>所含歌曲</span>
 		</div>
-		<dish v-for="dishes in dishes" :data="{{ dishes }}"></dish>
-	</div>
+		<div class="bar-info" v-for="dish in dishes" albumId="{{ dish.album_id }}">
+			<span>{{ dish.album_name }}</span>
+			<span>{{ dish.album_author }}</span>
+			<span>{{ dish.published_at }}</span>
+			<span>{{ dish.album_size }} </span>
+			<span>
+				<span class="sanjiao"></span>
+			</span>
+		</div>
 </template>
 <script>
-	import dish from './dish.vue';
 	export default{
 		data () {
 			return {
+				dishes: [],
 				dishPromise: (async () => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
@@ -36,8 +43,6 @@
 					this.dishes = tempP;
 					return;
 				})(),
-
-				dishes: []
 			}
 		},
 
@@ -48,14 +53,23 @@
 				if(target.className === 'bar-info'){
 					if(e.target.className === 'sanjiao'){		//进行往期节目的渲染
 						e.target.className = 'fansanjiao';
-						let div = document.createElement('div');
-						div.className = "bar-info";
-						div.mus = true;
-						div.innerHTML = 
-						"<span>歌曲名称: 相依为命</span>" +
-						"<span>演唱者: 陈小春</span>" +
-						"<span>文件大小: 25MB</span>"
-					  target.parentNode.insertBefore(div, target.nextSibling);
+						let ambId = target.getAttribute('albumid');
+						//循环创建歌曲列表 我是傻逼
+						this.dishes.map((iterm, index)=>{
+							if(iterm.album_id != ambId)
+								return;
+							console.log(iterm.sheets_meta);
+							iterm.sheets_meta.map((it, ind) => {
+								let div = document.createElement('div');
+								div.className = "bar-info";
+								div.mus = true;
+								div.innerHTML = 
+								"<span>歌曲名称: "+ it.song_name +"</span>" +
+								"<span>演唱者: " + it.song_singer + "</span>" +
+								"<span>点歌人: " + it.name + "</span>"
+							  target.parentNode.insertBefore(div, target.nextSibling);
+							})
+						})
 					}else{
 						e.target.className = 'sanjiao';
 						fordel(target);
@@ -71,9 +85,6 @@
 				}
 			}
 		},
-		components: {
-			dish,
-		}
 	}
 </script>
 <style>
@@ -97,6 +108,7 @@
 		flex: 1;
 		text-align: center;
 		line-height: 30px;
+		overflow: hidden;
 	}
 
 	.bar-title{
