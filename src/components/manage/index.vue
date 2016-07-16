@@ -15,19 +15,21 @@
 					<option value="">未采纳</option>
 				</select>
 			</form>
-			<div class='man-title'>
-				<span>歌手</span>
-				<span>歌名</span>
-				<span>对方姓名</span>
-				<span>内容</span>
-				<span>点歌人</span>
-				<span>时间</span>
-				<span>点赞数</span>
-				<span>操作</span>
+			<div id="mume-contain">
+				<div class='man-title'>
+					<span>歌手</span>
+					<span>歌名</span>
+					<span>对方姓名</span>
+					<span>内容</span>
+					<span>点歌人</span>
+					<span>时间</span>
+					<span>点赞数</span>
+					<span>操作</span>
+				</div>
+				<input type="file" style="display:none" id="up">
+				<mumes></mumes>	
 			</div>
-			<input type="file" style="display:none" id="up">
-			<mumes></mumes>	
-		</div>
+		<div>
 </template>
 
 <script>
@@ -62,6 +64,10 @@
 </script>
 
 <style>
+	#mume-contain{
+		width: 92%;
+		margin: 0 auto;
+	}
 	.man-con{
 		float: right;
 		width: 810px;
@@ -94,7 +100,7 @@
 		border: 1px solid #ccc;
 		border-radius: 5px;
 		flex: 1;
-		color: #000;
+		color: #333;
 		overflow: hidden;
 	}
 	.is-pass{
@@ -102,6 +108,6 @@
 		transition: all 0.5s ease-in-out;
 	}
 	.is-pass:hover{
-		background: rgb(217,79,71);
+		background: #ccc;
 	}
 </style>

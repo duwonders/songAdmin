@@ -50,6 +50,7 @@
 		methods : {
 			showMus : function(e){
 				let target = e.target.parentNode.parentNode;
+				// console.log(this.dishes)
 				if(target.className === 'bar-info'){
 					if(e.target.className === 'sanjiao'){		//进行往期节目的渲染
 						e.target.className = 'fansanjiao';

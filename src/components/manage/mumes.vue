@@ -7,7 +7,8 @@
 		<span>{{ it.name }}</span>
 		<span>{{ it.created_at }}</span>
 		<span>{{ it.likes }}</span>
-		<span class="is-pass" songId="{{ index }}" v-on:click="clickUp">采纳</span>
+		<span class="is-pass" songId="{{ index }}" v-on:click="clickUp" style="color:rgb(217,79,71)" v-if="it.played == 0">采纳</span>
+		<span class="is-pass" songId="{{ index }}" style="color:rgb(217,79,71)" v-if="it.played == 1">已采纳</span>
 	</div>
 </template>
 <script>
@@ -32,6 +33,7 @@
 						return data1;
 					});
 					this.songMsg = tempP;
+					console.log(this.songMsg);
 					return;
 				})(),
 
