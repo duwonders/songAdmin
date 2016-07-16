@@ -58,7 +58,7 @@
 						this.dishes.map((iterm, index)=>{
 							if(iterm.album_id != ambId)
 								return;
-							console.log(iterm.sheets_meta);
+							console.log(iterm.album_id);
 							iterm.sheets_meta.map((it, ind) => {
 								let div = document.createElement('div');
 								div.className = "bar-info";
