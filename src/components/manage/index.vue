@@ -88,13 +88,13 @@
 		margin-top: 20px;
 	}
 	.man-con .man-title span{
-		color: #000;
+		color: #ccc;
 	}
 	.man-con span{
 		border: 1px solid #ccc;
 		border-radius: 5px;
 		flex: 1;
-		color: #ccc;
+		color: #000;
 		overflow: hidden;
 	}
 	.is-pass{
