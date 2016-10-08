@@ -5,26 +5,55 @@
 				<p class='add-p'>违规字设置</p>
 				<div class='add-min'>
 					<input type="text" id="rule-add">
-					<button>设置</button>
+					<button v-on:click="addRule">设置</button>
 					<p>已设置的违规字：</p>
 					<div class="span-con">
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
-						<span>dsadsadsa</span>
+						<span v-for="item in rules">{{ item }}</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
+<script>
+	export default{
+		data(){
+			return {
+				rules: [],
+				rulesPromise: (() => {
+					return new Promise( (resolve, reject) => {
+						let xhr = new XMLHttpRequest() 
+						xhr.open('GET', './dsadsa')
+						xhr.send();
+						xhr.onload = (response) => {
+							console.log(response)
+							this.rules.push(response)
+							resolve()
+						}
+					})
+				})(),
+			}
+		},
+		methods: {
+			addRule: function(){
+				let newRule = document.querySelector('#rule-add').value
+				if(!newRule)
+				  return alert("不能为空")
+				let xhr = new XMLHttpRequest() 
+				xhr.open('POST', './dsadsa')
+				xhr.send(`newRule={$newRule}`);
+				console.log(this)
+				xhr.onload = (response) => {
+					console.log(this)
+					if(response.status == "200")
+						return this.rules.push(newRule)
+					  alert("添加失败")
+				}
+			}
+		}
+
+	}
+</script>
 
 <style>
 	.rule{
