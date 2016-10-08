@@ -2,12 +2,40 @@
 	<div class="notiform">
 		<p class='no-top'>发表新公告：</p>
 		<label for="no-title">公告标题</label>
-		<input type="text" id='no-title'>
+		<input type="text" id='no-title' v-model="title">
 		<label for="no-context">公告内容</label>
-		<textarea id='no-context' placeholder="限200字"></textarea>
-		<button>提交</button>
+		<textarea id='no-context' placeholder="限200字" v-model="content">{{ content }}</textarea>
+		<button v-on:click="addNotice">提交</button>
 	</div>
 </template>
+<script>
+	export default{
+		data(){
+			return {
+				title: "",
+				content: ""
+			}
+		},
+		methods: {
+			addNotice: function(){
+				let title = this.title,
+						content = this.content
+				let xhr = new XMLHttpRequest()
+				xhr.open('POST', './')
+				xhr.send(`title=${title}&content=${content}`)
+				xhr.onload = (response) => {
+					if(!response.status == 200)
+						return alert("添加失败")
+					console.log(1)
+					this.$dispatch('noticeChange', {
+						title: title,
+						content: content
+					})
+				} 
+			}
+		}
+	}
+</script>
 <style>
 	.notiform{
 		width: 80%;

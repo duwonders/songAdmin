@@ -12,6 +12,12 @@
 		components: {
 			notice,
 			notiform
+		},
+		events: {
+			noticeChange: function(partern){
+				console.log(2)
+				this.$broadcast('addNoticeOnce', partern)
+			}
 		}
 	}
 </script>
@@ -19,6 +25,7 @@
 	.no-con{
 		float: right;
 		width: 810px;
+		min-height: 770px;
 		background: #fff;
 		/*overflow: hidden;*/
 	}
