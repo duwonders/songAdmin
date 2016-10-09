@@ -10,7 +10,14 @@
 		<span class="is-pass" songId="{{ index }}" v-on:click="clickUp" style="color:rgb(217,79,71)" v-if="it.played == 0">采纳</span>
 		<span class="is-pass" songId="{{ index }}" style="color:rgb(217,79,71)" v-if="it.played == 1">已采纳</span>
 	</div>
+	<p id="no-music"  v-if="!songMsg.length">没有上传的新歌曲!</p>
 </template>
+<style>
+	#no-music{
+		margin: 200px auto;
+		fontsize: 18px;
+	}
+</style>
 <script>
 	export default{
 		data () { 
