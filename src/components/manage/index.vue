@@ -1,20 +1,20 @@
 <template>
 		<div class='man-con'>
-			<form action="">
-				<select name="" id="">
-					<option value="">最近一天</option>
-					<option value="">最近三天</option>
-					<option value="">最近一周</option>
+			<!--<form action="" v-on:change="dataChange">
+				<select name="" id="time" v-model="time">
+					<option value="最近一天">最近一天</option>
+					<option value="最近三天">最近三天</option>
+					<option value="最近三天">最近一周</option>
 				</select>
-				<select name="" id="">
-					<option value="">时间</option>
-					<option value="">热门</option>
+				<select name="" id="day" v-model="type">
+					<option value="时间">时间</option>
+					<option value="热门">热门</option>
 				</select>
-				<select name="" id="">
-					<option value="">已经采纳</option>
-					<option value="">未采纳</option>
+				<select name="" id="isAccept" v-model="isAccept">
+					<option value="已经采纳">已经采纳</option>
+					<option value="未采纳">未采纳</option>
 				</select>
-			</form>
+			</form>-->
 			<div id="mume-contain">
 				<div class='man-title'>
 					<span>歌手</span>
@@ -31,13 +31,27 @@
 			</div>
 		<div>
 </template>
-
 <script>
 	import mumes from './mumes.vue';
 	export default{
+		data(){
+			return{
+				time: "最近一天",
+				type:	"时间",
+				isAccept: "已经采纳"
+			}
+		},
+
 		components: {
 			mumes
 		},
+
+		methods:{
+			dataChange: function(){
+				this.$
+			},
+		},
+
 		events: {
 			clickUp: function(data){
 				let upBut = document.querySelector('#up');
