@@ -1,10 +1,10 @@
 <template>
 		<div class='man-con'>
-			<!--<form action="" v-on:change="dataChange">
+			<form action="" v-on:change="dataChange">
 				<select name="" id="time" v-model="time">
 					<option value="最近一天">最近一天</option>
 					<option value="最近三天">最近三天</option>
-					<option value="最近三天">最近一周</option>
+					<option value="最近一周">最近一周</option>
 				</select>
 				<select name="" id="day" v-model="type">
 					<option value="时间">时间</option>
@@ -14,7 +14,7 @@
 					<option value="已经采纳">已经采纳</option>
 					<option value="未采纳">未采纳</option>
 				</select>
-			</form>-->
+			</form>
 			<div id="mume-contain">
 				<div class='man-title'>
 					<span>歌手</span>
@@ -48,7 +48,17 @@
 
 		methods:{
 			dataChange: function(){
-				this.$
+				let time = this.time,
+						type = this.type,
+						isAccept = this.isAccept
+				
+				this.$broadcast('dish', {
+					time: time,
+					type: type,
+					isAccept: isAccept
+				})
+				
+						
 			},
 		},
 

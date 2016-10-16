@@ -22,10 +22,10 @@
 	export default{
 		data () { 
 			return {
-				songMsgPromise: (async () => {
+				songMsgPromise: (async (time="最近一天", type="时间", isAccept="已经采纳") => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', 'http://localhost:8000/song/list');
+						xhr.open('GET', `http://localhost:8000/song/list?time=${time}&type=${type}&isAccept=${isAccept}`);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){
@@ -45,6 +45,31 @@
 				})(),
 
 				songMsg: []
+			}
+		},
+		events: {
+			dish: function(config){
+				(async (time=config.time, type=config.type, isAccept=config.isAccept) => {
+					let promise = new Promise((resolve, reject) => {
+						let xhr = new XMLHttpRequest();
+						xhr.open('GET', `http://localhost:8000/song/list?time=${time}&type=${type}&isAccept=${isAccept}`);
+						xhr.send();
+						xhr.onload = function(){
+							if(xhr.readyState == 4 && xhr.status == 200){
+								resolve(xhr.responseText);
+							}else{
+								alert("出现异常");
+							}
+						}
+					});
+					let tempP = await promise.then(data => {
+						let data1 = JSON.parse(data)['list'];
+						return data1;
+					});
+					this.songMsg = tempP;
+					console.log(this.songMsg);
+					return;
+				})()
 			}
 		},
 		methods: {

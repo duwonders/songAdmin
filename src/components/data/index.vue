@@ -1,19 +1,19 @@
 <template>
 		<div class='data-con'>
-			<!--<form action="">
-				<select name="" id="">
-					<option value="">最近一天</option>
-					<option value="">最近三天</option>
-					<option value="">最近一周</option>
-					<option value="">最近十五天</option>
-					<option value="">最近一个月</option>
+			<form action="" v-on:change="dataChange">
+				<select name="" id="" v-model="time">
+					<option value="最近一天">最近一天</option>
+					<option value="最近三天">最近三天</option>
+					<option value="最近一周">最近一周</option>
+					<option value="最近十五天">最近十五天</option>
+					<option value="最近一个月">最近一个月</option>
 				</select>
-				<select name="" id="">
-					<option value="">点歌次数</option>
-					<option value="">累计点赞数</option>
-					<option value="">综合热门度</option>
+				<select name="" id="" v-model="type">
+					<option value="点歌次数">点歌次数</option>
+					<option value="累计点赞数">累计点赞数</option>
+					<option value="综合热门度">综合热门度</option>
 				</select>
-			</form>-->
+			</form>
 			<div class='data-title'>
 				<span>序号</span>
 				<span>歌名</span>
@@ -57,8 +57,37 @@
 					console.log(this.songMsg);
 					return;
 				})(),
-
-				songMsg: []
+				songMsg: [],
+				time: "最近一天",
+				type: "点歌次数"
+			}
+		},
+		methods: {
+			dataChange: function(){
+				(async () => {
+					let promise = new Promise((resolve, reject) => {
+						let xhr = new XMLHttpRequest(),
+						time = this.time,
+						type = this.type
+						
+						xhr.open('GET', `http://localhost:8000/song/list&time=${time}&type=${type}`);
+						xhr.send();
+						xhr.onload = function(){
+							if(xhr.readyState == 4 && xhr.status == 200){
+								resolve(xhr.responseText);
+							}else{
+								alert("出现异常");
+							}
+						}
+					});
+					let tempP = await promise.then(data => {
+						let data1 = JSON.parse(data)['list'];
+						return data1;
+					});
+					this.songMsg = tempP;
+					console.log(this.songMsg);
+					return;
+				})()
 			}
 		}
 	}
