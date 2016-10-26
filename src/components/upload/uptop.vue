@@ -19,7 +19,7 @@
 		</div>
 		<div class="up-right">
 			<upMusic v-for="i in nums"></upMusic>
-			<div class="onesong-con add" v-on:click="addMis()" >
+			<div class="onesong-con add" v-on:click="addMis" >
 				<p>+ 添加</p>
 			</div>
 		</div>
@@ -27,15 +27,15 @@
 </template>
 
 <script>
-	import upmusic from "./upMusic";
-
+	import upmusic from "./upMusic"
+ 	import urlconf from "../urlconf.js"
 	export default{
 		data () {
 			return {
 				nums: [
 					{ disable: [] },
 				],
-				musics: [],	//存放mp3文件的数组	
+				musics: [],	//存放歌曲id的数组
 				sizeAll: 0,
 				pic: undefined
 			}
@@ -60,6 +60,15 @@
 				this.nums.push({disable: []});
 			},
 			upload : function(){
+				let tmp = []
+				for (let i in this.musics){
+					let str = tmp.join("")
+					if(str.indexOf(this.musics[i].name) != -1){
+						return alert("有重复的歌曲")
+						break
+					}
+					tmp.push(this.musics[i].name)
+				}
 				//步骤一
 				if(!this.pic || this.musics.length == 0){
 					alert('文件不能为');
@@ -74,7 +83,15 @@
 				let num = this.musics.length;
 				let musics = JSON.stringify(this.musics);
 				let XHR = new XMLHttpRequest();
-				XHR.open('post', `../../../../../www/test/index.php?name=${name}&msg=${zhubo}&time=${time}&allSize=${size}&num=${num}&musics=${musics}`, true);
+				let program = {
+					name: name,
+					author: zhubo,
+					time: time,
+					allSize: size,
+					musics: musics
+				}
+				file.append('program', JSON.stringify(program))
+				XHR.open('post', `${urlconf.POG_UP}?&num=${num}`, true);
 				XHR.send(file);
 				XHR.onload = (data) => {
 					console.log(data.response);
@@ -83,7 +100,7 @@
 		},
 
 		events : {
-			'pushFile' : function(music, isChange = false){
+			pushFile : function(music, isChange = false){
 				if(isChange){
 					let preSize = this.musics[this.musics.length - 1].size;
 					this.sizeAll -= preSize;
@@ -172,7 +189,7 @@
 		margin-bottom: 15px;
 	}
 	.up-con select{
-		margin: -20px 9px 0 20px;
+		margin: 14px 9px 0 20px;
 		width: 179px;
 		height: 26px;
 		border: 2px solid rgb(200, 200, 200);
@@ -209,7 +226,7 @@
 	}
 	.onesong-con{
 		width: 89%;
-		height: 75px;
+		height: 50px;
 		margin: 10px 0;
 		padding: 10px;
 		border: 1px solid rgb(200, 200, 200);
@@ -226,7 +243,7 @@
 		font-size: 20px;
 		color: rgb(217, 79, 71);
 		text-align: center;
-		line-height: 80px;
+		line-height: 50px;
 	}
 	.add:hover{
 		transition: all 0.6s ease-in-out;

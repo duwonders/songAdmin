@@ -19,7 +19,7 @@
 		</div>
 </template>
 <script>   
-
+	import url_conf from '../urlconf.js'
 	export default{
 		data () {
 			return {
@@ -27,7 +27,7 @@
 				dishPromise: (async () => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', 'http://localhost:8000/program/list');
+						xhr.open('GET', url_conf.POG_LT);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){
@@ -50,18 +50,28 @@
 
 		methods : {
 			showMus : function(e){
-				let target = e.target.parentNode.parentNode;
-				// console.log(this.dishes)
+				let target = e.target.parentNode.parentNode
 				if(target.className === 'bar-info'){
 					if(e.target.className === 'sanjiao'){		//进行往期节目的渲染
 						e.target.className = 'fansanjiao';
 						let ambId = target.getAttribute('albumid');
 						//循环创建歌曲列表 我是傻逼
 						this.dishes.map((iterm, index)=>{
+							console.log(Object.assign({},iterm))
 							if(iterm.album_id != ambId)
 								return;
-							console.log(iterm.album_id);
-							iterm.sheets_meta.map((it, ind) => {
+							let message = JSON.parse(iterm.sheets_meta)
+							for(let i in message){
+								let div = document.createElement('div');
+								div.className = "bar-info";
+								div.mus = true;
+								div.innerHTML = 
+								"<span>歌曲名称: "+ message[i].song_name +"</span>" +
+								"<span>演唱者: " + message[i].song_singer + "</span>" +
+								"<span>点歌人: " + message[i].name + "</span>"
+							  target.parentNode.insertBefore(div, target.nextSibling);
+							}
+							/*iterm.sheets_meta.map((it, ind) => {
 								let div = document.createElement('div');
 								div.className = "bar-info";
 								div.mus = true;
@@ -70,7 +80,7 @@
 								"<span>演唱者: " + it.song_singer + "</span>" +
 								"<span>点歌人: " + it.name + "</span>"
 							  target.parentNode.insertBefore(div, target.nextSibling);
-							})
+							})*/
 						})
 					}else{
 						e.target.className = 'sanjiao';

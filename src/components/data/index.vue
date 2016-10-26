@@ -1,7 +1,7 @@
 <template>
 		<div class='data-con'>
 			<form action="" v-on:change="dataChange">
-				<select name="" id="" v-model="time">
+				<select name="" id="" v-model="days">
 					<option value="最近一天">最近一天</option>
 					<option value="最近三天">最近三天</option>
 					<option value="最近一周">最近一周</option>
@@ -26,20 +26,21 @@
 				<span>{{ it.song_id }}</span>
 				<span>{{ it.song_name }}</span>
 				<span>{{ it.song_singer }}</span>
-				<span>{{ it.song_likes }}</span>
-				<span>{{ it.song_likes }}</span>
-				<span>{{ it.song_likes }}</span>
+				<span>{{ it.likes }}</span>
+				<span>{{ it.likes }}</span>
+				<span>{{ it.likes }}</span>
 			</div>
 		</div>
 </template>
 <script>
+	import url from "../urlconf.js"
 	export default{
 		data(){
 			return {
 				songMsgPromise: (async () => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', 'http://localhost:8000/song/list');
+						xhr.open('GET', url.SG_LT);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){
@@ -58,7 +59,7 @@
 					return;
 				})(),
 				songMsg: [],
-				time: "最近一天",
+				days: "最近一天",
 				type: "点歌次数"
 			}
 		},
@@ -70,7 +71,7 @@
 						time = this.time,
 						type = this.type
 						
-						xhr.open('GET', `http://localhost:8000/song/list&time=${time}&type=${type}`);
+						xhr.open('GET', `${url.SG_LT}&time=${time}&type=${type}`);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){

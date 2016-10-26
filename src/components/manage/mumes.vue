@@ -19,13 +19,14 @@
 	}
 </style>
 <script>
+	import url from '../urlconf.js'
 	export default{
 		data () { 
 			return {
-				songMsgPromise: (async (time="最近一天", type="时间", isAccept="已经采纳") => {
+				songMsgPromise: (async (days=1, type="time", apply="yes") => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', `http://localhost:8000/song/list?time=${time}&type=${type}&isAccept=${isAccept}`);
+						xhr.open('GET', `${url.SG_LT}?days=${days}&type=${type}&apply=${apply}`);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){
@@ -49,10 +50,10 @@
 		},
 		events: {
 			dish: function(config){
-				(async (time=config.time, type=config.type, isAccept=config.isAccept) => {
+				(async (days=config.days, type=config.type, apply=config.apply) => {
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
-						xhr.open('GET', `http://localhost:8000/song/list?time=${time}&type=${type}&isAccept=${isAccept}`);
+						xhr.open('GET', `${url.SG_LT}?days=${days}&type=${type}&apply=${apply}`);
 						xhr.send();
 						xhr.onload = function(){
 							if(xhr.readyState == 4 && xhr.status == 200){

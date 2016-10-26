@@ -1,18 +1,18 @@
 <template>
 		<div class='man-con'>
 			<form action="" v-on:change="dataChange">
-				<select name="" id="time" v-model="time">
-					<option value="最近一天">最近一天</option>
-					<option value="最近三天">最近三天</option>
-					<option value="最近一周">最近一周</option>
+				<select name="" id="time" v-model="days">
+					<option value="1">最近一天</option>
+					<option value="3">最近三天</option>
+					<option value="7">最近一周</option>
 				</select>
 				<select name="" id="day" v-model="type">
-					<option value="时间">时间</option>
-					<option value="热门">热门</option>
+					<option value="time">时间</option>
+					<option value="hots">热门</option>
 				</select>
-				<select name="" id="isAccept" v-model="isAccept">
-					<option value="已经采纳">已经采纳</option>
-					<option value="未采纳">未采纳</option>
+				<select name="" id="isAccept" v-model="apply">
+					<option value="yes">已经采纳</option>
+					<option value="no">未采纳</option>
 				</select>
 			</form>
 			<div id="mume-contain">
@@ -33,12 +33,13 @@
 </template>
 <script>
 	import mumes from './mumes.vue';
+	import url_conf from '../urlconf.js'
 	export default{
 		data(){
 			return{
-				time: "最近一天",
-				type:	"时间",
-				isAccept: "已经采纳"
+				days: "1",
+				type:	"time",
+				apply: "yes"
 			}
 		},
 
@@ -48,14 +49,14 @@
 
 		methods:{
 			dataChange: function(){
-				let time = this.time,
+				let days = this.days,
 						type = this.type,
-						isAccept = this.isAccept
+						apply = this.apply
 				
 				this.$broadcast('dish', {
-					time: time,
+					days: days,
 					type: type,
-					isAccept: isAccept
+					apply: apply
 				})
 				
 						
@@ -77,10 +78,16 @@
 					let formdata = new FormData();
 					formdata.append('mis', file);
 					let xhr = new XMLHttpRequest();
-					let songMessage = {};
-					Object.assign(songMessage, data);
-					xhr.open('POST', `lalala.php?id=${songMessage.id}`);
+					let songMessage = {
+						singer: data.song_name,
+						songName: data.song_singer
+					};
+					formdata.append('songMessage', JSON.stringify(songMessage))
+					xhr.open('POST', `${url_conf.SG_UP}?id=${data.song_id}`);
 					xhr.send(formdata);
+					xhr.onreadystatechange = function(){
+						console.log(xhr.readystate)
+					}
 				}
 			}
 		}
