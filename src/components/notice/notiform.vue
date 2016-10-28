@@ -9,6 +9,7 @@
 	</div>
 </template>
 <script>
+	import url_conf from '../urlconf.js'
 	export default{
 		data(){
 			return {
@@ -21,7 +22,7 @@
 				let title = this.title,
 						content = this.content
 				let xhr = new XMLHttpRequest()
-				xhr.open('POST', './')
+				xhr.open('POST', url_conf)
 				xhr.send(`title=${title}&content=${content}`)
 				xhr.onload = (response) => {
 					if(!response.status == 200)

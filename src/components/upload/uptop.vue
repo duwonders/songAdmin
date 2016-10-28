@@ -44,7 +44,7 @@
 			showpic : function(e){
 				let f = e.target.files[0];
 				let reader = new FileReader();
-				if(f.size < 250 * 1024)
+				if(f.size > 250 * 1024)
 					return alert("文件过大")
 				if(/image/.test(f.type)){
 					reader.readAsDataURL(f);
