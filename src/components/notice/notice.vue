@@ -18,7 +18,7 @@
 						xhr.open('GET', './')
 						xhr.send()
 						xhr.onload = (response) => {
-							// this.notice = response	//公告对象
+							this.notice = response	//公告对象
 							rs()
 						}
 					})

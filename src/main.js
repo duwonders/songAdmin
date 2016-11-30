@@ -5,12 +5,14 @@ import VueRouter from 'vue-router'
 
 
 //引入组件文件
+import leftbar from './components/static/leftbar.vue'
 import upload from './components/upload/index.vue'
 import manage from './components/manage/index.vue'
 import rule from './components/rule/index.vue'
 import data from './components/data/index.vue'
 import notice from './components/notice/index.vue'
 import indexf from './App.vue'
+import login from './components/login/index.vue'
 
 
 Vue.use(VueRouter);
@@ -28,7 +30,7 @@ router.map({//定义路由映射
         //component:require("components/app.vue")//还可以直接使用这样的方式也是没问题的。不过会没有import集中引入那么直观
         subRoutes: {
             '/': {
-                component: manage
+                component: login
             },
             '/manage': {
                 component: manage
