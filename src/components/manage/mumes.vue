@@ -24,6 +24,7 @@
 		data () { 
 			return {
 				songMsgPromise: (async (days=1, type="time", apply="yes") => {
+					this.$dispatch('cheackLog')
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
 						xhr.open('GET', `${url.SG_LT}?days=${days}&type=${type}&apply=${apply}`);

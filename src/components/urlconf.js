@@ -6,5 +6,6 @@ export default{
   SG_SLT: `${domain}/song/simple/list`,
   POG_LT: `${domain}/program/list`,
   REP_HIS: `${domain}/represent/history`,
-  NT_UP: `${domain}`
+  NT_UP: `${domain}`,
+  LGIN: `${domain}/`
 }

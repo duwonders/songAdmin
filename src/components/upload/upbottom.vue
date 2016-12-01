@@ -25,6 +25,7 @@
 			return {
 				dishes: [],
 				dishPromise: (async () => {
+					this.$dispatch('cheackLog')
 					let promise = new Promise((resolve, reject) => {
 						let xhr = new XMLHttpRequest();
 						xhr.open('GET', url_conf.POG_LT);

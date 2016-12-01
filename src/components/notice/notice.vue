@@ -13,6 +13,7 @@
 			return {
 				notice: [],
 				noticePromise: (() => {
+					this.$dispatch('cheackLog')
 					return new Promise((rs, rj)=>{
 						let xhr = new XMLHttpRequest();
 						xhr.open('GET', './')

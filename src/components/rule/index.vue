@@ -22,6 +22,7 @@
 				rules: [],
 				rulesPromise: (() => {
 					return new Promise( (resolve, reject) => {
+						this.$dispatch('cheackLog')
 						let xhr = new XMLHttpRequest() 
 						xhr.open('GET', './dsadsa')
 						xhr.send();

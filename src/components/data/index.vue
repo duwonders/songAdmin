@@ -39,6 +39,7 @@
 			return {
 				songMsgPromise: (async () => {
 					let promise = new Promise((resolve, reject) => {
+						this.$dispatch('cheackLog')
 						let xhr = new XMLHttpRequest();
 						xhr.open('GET', url.SG_LT);
 						xhr.send();
