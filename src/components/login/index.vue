@@ -67,9 +67,12 @@ export default {
     login: function(){
       let username = this.username,
           password = this.password,
-          xhr = new XMLHttpRequest()
+          xhr = new XMLHttpRequest(),
+          formdata = new FormData()
+      formdata.append('username', username)
+      formdata.append('password', password)
       xhr.open('POST', url.LGIN)
-      xhr.send(`username=${username}&password=${password}`)
+      xhr.send(formdata)
       xhr.onload = function(){
          this.success(xhr.responseText)
       }
