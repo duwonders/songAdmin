@@ -24,7 +24,7 @@ export default {
     cheackLog: function(){
       if(!this.login){
         alert("请先登录")
-        window.location.href = './'
+        window.location.href = './admin'
       }
     }
   },

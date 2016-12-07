@@ -82,6 +82,7 @@ export default {
       if(!res.resolve) return alert("登录失败")
       this.$dispatch('login')
       alert("登陆成功")
+      window.location.href = "./admin#!/index/manage"
     }
   }
 }
