@@ -73,9 +73,9 @@ export default {
       formdata.append('password', password)
       xhr.open('POST', url.LGIN)
       xhr.send(formdata)
-      xhr.onload = function(){
+      xhr.addEventListenner('load', () => {
          this.success(xhr.responseText)
-      }
+      })
     },
     success: function(data){
       let res = JSON.parse(data)
