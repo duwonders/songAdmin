@@ -11,7 +11,6 @@
 	export default{
 		data () {
 			return {
-				notice: [],
 				noticePromise: (() => {
 					this.$dispatch('cheackLog')
 					return new Promise((rs, rj)=>{
@@ -23,7 +22,7 @@
 							rs()
 						}
 					})
-				})()
+				})(),
 			}
 		},
 		events: {
