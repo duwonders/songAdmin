@@ -73,7 +73,7 @@ export default {
       formdata.append('password', password)
       xhr.open('POST', url.LGIN)
       xhr.send(formdata)
-      xhr.addEventListenner('load', () => {
+      xhr.addEventListener('load', () => {
          this.success(xhr.responseText)
       })
     },
